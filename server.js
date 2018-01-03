@@ -4,6 +4,8 @@ var bodyParser= require('body-parser');
 var morgan= require('morgan');
 var port= process.env.PORT||5022;
 var request= require('request');
+var FormData= require('form-data');
+var fs= require('fs')
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -21,7 +23,7 @@ app.use(morgan('dev'));
 var token="ae150148d9fe128b274f72e931ccc006e3f09ac33aa69e0b34165939c9da4a88";
 var baseURL="https://api.smartrecruiters.com/v1";
 
-require('./routes/routes.js')(app,token,baseURL,request)
+require('./routes/routes.js')(app,token,baseURL,request,FormData,fs)
 
 app.listen(port);
 console.log("WEB SERVER ON PORT : "+ port);
